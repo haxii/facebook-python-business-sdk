@@ -1,3 +1,5 @@
+Temporary fixed annoying `value of fields might not be compatible` when calling AdsInsights SDK. Ref [issue 234](https://github.com/facebook/facebook-python-business-sdk/issues/234).
+
 # Facebook Business SDK for Python
 
 [![Build Status](https://travis-ci.org/facebook/facebook-python-business-sdk.svg)](https://travis-ci.org/facebook/facebook-python-business-sdk)
