@@ -619,6 +619,7 @@ class AdSet(
             'use_account_attribution_setting': 'bool',
         }
         enums = {
+            'fields_enum': AdsInsights.Field.__dict__.values(),
             'action_attribution_windows_enum': AdsInsights.ActionAttributionWindows.__dict__.values(),
             'action_breakdowns_enum': AdsInsights.ActionBreakdowns.__dict__.values(),
             'action_report_time_enum': AdsInsights.ActionReportTime.__dict__.values(),
@@ -677,6 +678,7 @@ class AdSet(
             'use_account_attribution_setting': 'bool',
         }
         enums = {
+            'fields_enum': AdsInsights.Field.__dict__.values(),
             'action_attribution_windows_enum': AdsInsights.ActionAttributionWindows.__dict__.values(),
             'action_breakdowns_enum': AdsInsights.ActionBreakdowns.__dict__.values(),
             'action_report_time_enum': AdsInsights.ActionReportTime.__dict__.values(),
