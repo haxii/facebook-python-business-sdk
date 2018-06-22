@@ -162,7 +162,7 @@ class FacebookAdsApi(object):
     _default_api = None
     _default_account_id = None
 
-    def __init__(self, session, api_version=None):
+    def __init__(self, session, api_version=None, debug=False):
         """Initializes the api instance.
         Args:
             session: FacebookSession object that contains a requests interface
@@ -173,6 +173,7 @@ class FacebookAdsApi(object):
         self._num_requests_succeeded = 0
         self._num_requests_attempted = 0
         self._api_version = api_version or self.API_VERSION
+        self._debug = debug
 
     def get_num_requests_attempted(self):
         """Returns the number of calls attempted."""
@@ -191,11 +192,12 @@ class FacebookAdsApi(object):
         account_id=None,
         api_version=None,
         proxies=None,
-        timeout=None
+        timeout=None,
+        debug=False,
     ):
         session = FacebookSession(app_id, app_secret, access_token, proxies,
                                   timeout)
-        api = cls(session, api_version)
+        api = cls(session, api_version, debug)
         cls.set_default_api(api)
 
         if account_id:
@@ -293,6 +295,15 @@ class FacebookAdsApi(object):
 
         if params:
             params = _top_level_param_json_encode(params)
+        if self._debug:
+            print(
+                "\tRequest DEBUG: \n" +
+                "\tMethod:  %s\n" % method +
+                "\tPath:    %s\n" % path +
+                "\tParams:  %s\n" % params +
+                "\tHeaders: %s\n" % headers +
+                "\tFiles:   %s\n" % files 
+            )
 
         # Get request response and encapsulate it in a FacebookResponse
         if method in ('GET', 'DELETE'):
@@ -325,6 +336,14 @@ class FacebookAdsApi(object):
                 'files': files,
             },
         )
+
+        if self._debug:
+            print(
+                "\tResponse DEBUG: \n" +
+                "\tStatus:  %s\n" % fb_response.status() +
+                "\tHeaders: %s\n" % fb_response.headers() +
+                "\tBody:    %s\n" % fb_response.body() 
+            )
 
         if fb_response.is_failure():
             raise fb_response.error()
