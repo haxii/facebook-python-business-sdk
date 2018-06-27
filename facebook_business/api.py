@@ -302,7 +302,7 @@ class FacebookAdsApi(object):
                 "\tPath:    %s\n" % path +
                 "\tParams:  %s\n" % params +
                 "\tHeaders: %s\n" % headers +
-                "\tFiles:   %s\n" % files 
+                "\tFiles:   %s\n" % str(files)[:200]
             )
 
         # Get request response and encapsulate it in a FacebookResponse
