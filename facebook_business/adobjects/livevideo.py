@@ -46,6 +46,7 @@ class LiveVideo(
         broadcast_start_time = 'broadcast_start_time'
         copyright = 'copyright'
         creation_time = 'creation_time'
+        dash_ingest_url = 'dash_ingest_url'
         dash_preview_url = 'dash_preview_url'
         description = 'description'
         embed_html = 'embed_html'
@@ -96,12 +97,17 @@ class LiveVideo(
         equirectangular = 'EQUIRECTANGULAR'
         cubemap = 'CUBEMAP'
 
+    class Source:
+        target = 'target'
+        owner = 'owner'
+
     class SpatialAudioFormat:
         ambix_4 = 'ambiX_4'
 
-    class Type:
-        tagged = 'tagged'
-        uploaded = 'uploaded'
+    class StereoscopicMode:
+        mono = 'MONO'
+        left_right = 'LEFT_RIGHT'
+        top_bottom = 'TOP_BOTTOM'
 
     def api_delete(self, fields=None, params=None, batch=None, pending=False):
         param_types = {
@@ -186,6 +192,7 @@ class LiveVideo(
             'product_items': 'list<string>',
             'published': 'bool',
             'schedule_custom_profile_image': 'file',
+            'schedule_feed_background_image': 'file',
             'sponsor_id': 'string',
             'sponsor_relationship': 'unsigned int',
             'status': 'status_enum',
@@ -227,6 +234,7 @@ class LiveVideo(
         'broadcast_start_time': 'datetime',
         'copyright': 'VideoCopyright',
         'creation_time': 'datetime',
+        'dash_ingest_url': 'string',
         'dash_preview_url': 'string',
         'description': 'string',
         'embed_html': 'string',
@@ -254,6 +262,7 @@ class LiveVideo(
         field_enum_info['StreamType'] = LiveVideo.StreamType.__dict__.values()
         field_enum_info['BroadcastStatus'] = LiveVideo.BroadcastStatus.__dict__.values()
         field_enum_info['Projection'] = LiveVideo.Projection.__dict__.values()
+        field_enum_info['Source'] = LiveVideo.Source.__dict__.values()
         field_enum_info['SpatialAudioFormat'] = LiveVideo.SpatialAudioFormat.__dict__.values()
-        field_enum_info['Type'] = LiveVideo.Type.__dict__.values()
+        field_enum_info['StereoscopicMode'] = LiveVideo.StereoscopicMode.__dict__.values()
         return field_enum_info
